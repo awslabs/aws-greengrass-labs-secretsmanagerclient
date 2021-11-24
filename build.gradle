@@ -1,0 +1,46 @@
+plugins {
+    id 'java'
+}
+
+group 'com.aws.greengrass.sample'
+version '1.0.0'
+
+repositories {
+    mavenCentral()
+    maven {
+        url System.getenv('HOME') + "/.m2/repository"
+    }
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    implementation 'software.amazon.awssdk.iotdevicesdk:aws-iot-device-sdk:1.5.3'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+jar {
+    archiveName = 'secrets.jar'
+    manifest {
+        attributes "Main-Class": "com.aws.greengrass.sample.SecretsManagerClient"
+    }
+    //from sourceSets.main.output
+
+    dependsOn configurations.runtimeClasspath
+    from {
+        configurations.runtimeClasspath.findAll { it.name.endsWith('jar')}.collect { zipTree(it)}
+    }
+}
+
+
+tasks.register('copyArtifact', Copy) {
+    dependsOn tasks.uberJar
+    from tasks.uberJar.getArchiveFile()
+    into "${projectDir}/artifacts/community.greengrass.SecretsManagerClient"
+
+    rename '.*', 'secrets.jar'
+}
+

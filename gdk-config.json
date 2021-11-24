@@ -1,0 +1,17 @@
+{
+    "component": {
+        "community.greengrass.SecretsManagerClient": {
+            "author": "Amazon Web Services",
+            "version": "1.0.0",
+            "build": {
+                "build_system": "gradle"
+                
+            },
+            "publish": {
+                "bucket": "ggv2-components",
+                "region": "eu-west-1"
+            }
+        }
+    },
+    "tools_version": "1.0.0"
+}
