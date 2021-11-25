@@ -1,9 +1,9 @@
 RecipeFormatVersion: 2020-01-25
-ComponentName: community.greengrass.SecretsManagerClient
+ComponentName: aws.greengrass.labs.SecretsManagerClient
 ComponentVersion: 1.0.0
 ComponentDescription: A component providing a client to fetch secrets from
   SecretsManager. Use by calling java -jar
-  {community.greengrass.SecrectsManagerClient:artifacts:path}/secrects.jar
+  {aws.greengrass.labs.SecrectsManagerClient:artifacts:path}/secrects.jar
   <secretId>
 ComponentPublisher: Amazon Web Services
 ComponentDependencies:

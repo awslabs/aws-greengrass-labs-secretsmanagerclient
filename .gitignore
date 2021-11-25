@@ -3,3 +3,6 @@ bin
 greengrass-build
 artifacts
 gradle
+.gradle
+.settings
+.project

@@ -1,4 +1,4 @@
-# community.greengrass.SecretsManagerClient
+# aws.greengrass.labs.SecretsManagerClient
 
 This component deploys a SecretManagerClient java cli tool that can be used by other components to retrieve secrets that have been synchronized locally to the Greengrass core via the `aws.greengrass.SecretManager` component.
 
@@ -6,7 +6,7 @@ This component does not perform any processing on its own and only deploys the e
 
 ```
 java -jar
-  {community.greengrass.SecrectsManagerClient:artifacts:path}/secrects.jar
+  {aws.greengrass.labs.SecrectsManagerClient:artifacts:path}/secrects.jar
   <secretId>
 ```
 
