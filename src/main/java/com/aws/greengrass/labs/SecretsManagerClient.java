@@ -30,10 +30,10 @@ public class SecretsManagerClient {
                     new GreengrassCoreIPCClient(eventStreamRPCConnection);
             System.out.println(Secret.get(ipcClient, secretId));
         } catch (InterruptedException e) {
-            System.out.println("IPC interrupted.");
+            System.err.println("IPC interrupted.");
             System.exit(1);
         } catch (TimeoutException e) {
-            System.out.println("Operation timed out.");
+            System.err.println("Operation timed out.");
             System.exit(1);
         } catch (ExecutionException e) {
             System.err.println("Exception occurred when using IPC.");
