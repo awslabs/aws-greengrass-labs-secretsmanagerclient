@@ -1,4 +1,4 @@
-package com.aws.greengrass.sample.util;
+package com.aws.greengrass.labs.util;
 
 /* Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0 */
