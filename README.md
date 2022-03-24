@@ -6,7 +6,7 @@ This component does not perform any processing on its own and only deploys the e
 
 ```
 java -jar
-  {aws.greengrass.labs.SecrectsManagerClient:artifacts:path}/secrects.jar
+  {aws.greengrass.labs.SecrectsManagerClient:artifacts:path}/secrets.jar
   <secretId>
 ```
 
