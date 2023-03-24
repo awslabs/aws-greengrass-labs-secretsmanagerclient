@@ -8,7 +8,7 @@ ComponentDescription: A component providing a client to fetch secrets from
 ComponentPublisher: Amazon Web Services
 ComponentDependencies:
   aws.greengrass.SecretManager:
-    VersionRequirement: ">0.0.0"
+    VersionRequirement: ">0.0.0 <3.0.0"
     DependencyType: SOFT
 Manifests:
   - Platform:

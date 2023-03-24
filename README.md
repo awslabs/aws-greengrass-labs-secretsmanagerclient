@@ -38,7 +38,7 @@ When you deploy a component, AWS IoT Greengrass also deploys compatible versions
 
 | Dependency | Compatible versions | Dependency type |
 |---|---|---|
-| Secret Manger | >=0.0.0 <2.5.0 | Soft |
+| Secret Manger | >=0.0.0 <3.0.0 | Soft |
 
 
 ## Configuration
