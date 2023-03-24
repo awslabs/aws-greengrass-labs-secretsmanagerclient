@@ -1,4 +1,4 @@
-package com.aws.greengrass.labs;
+package aws.greengrass.labs;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;

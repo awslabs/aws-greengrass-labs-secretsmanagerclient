@@ -1,4 +1,4 @@
-package com.aws.greengrass.labs;
+package aws.greengrass.labs;
 
 import software.amazon.awssdk.aws.greengrass.GetSecretValueResponseHandler;
 import software.amazon.awssdk.aws.greengrass.GreengrassCoreIPCClient;
