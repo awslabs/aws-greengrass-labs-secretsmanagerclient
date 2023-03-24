@@ -2,7 +2,8 @@ build
 bin
 greengrass-build
 artifacts
-gradle
+*.jar
+!gradle/wrapper/*.jar
 .gradle
 .settings
 .project

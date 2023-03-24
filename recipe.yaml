@@ -15,7 +15,7 @@ Manifests:
       os: /linux/
       architecture: /x86|aarch64|amd64|arm/
     Artifacts:
-      - URI: secrets.jar
+      - URI: s3://{BUCKET_NAME}/{COMPONENT_NAME}/{COMPONENT_VERSION}/secrets.jar
         Permission:
           Execute: ALL
           Read: ALL

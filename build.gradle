@@ -18,7 +18,7 @@ dependencies {
     implementation 'software.amazon.awssdk.iotdevicesdk:aws-iot-device-sdk:1.5.3'
     testImplementation "org.mockito:mockito-core:3.+"
     testImplementation 'org.mockito:mockito-inline:3.+'
-    testCompile 'com.github.stefanbirkner:system-rules:1.19.0'
+    testImplementation 'com.github.stefanbirkner:system-rules:1.19.0'
 }
 
 test {

@@ -1,6 +1,6 @@
 {
     "component": {
-        "community.greengrass.SecretsManagerClient": {
+        "aws.greengrass.labs.SecretsManagerClient": {
             "author": "Amazon Web Services",
             "version": "1.0.0",
             "build": {
