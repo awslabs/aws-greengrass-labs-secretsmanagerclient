@@ -2,7 +2,7 @@
 
 This component deploys a SecretManagerClient java cli tool that can be used by other components to retrieve secrets that have been synchronized locally to the Greengrass core via the `aws.greengrass.SecretManager` component.
 
-This component does not perform any processing on its own and only deploys the executable. You need to invoke the executable from another component which you made dependent on `community.greengrass.SecretsManagerClient` by executing:
+This component does not perform any processing on its own and only deploys the executable. You need to invoke the executable from another component which you made dependent on `aws.greengrass.labs.SecretsManagerClient` by executing:
 
 ```
 java -jar
@@ -12,7 +12,35 @@ java -jar
 
 To allow the component using the SecretManagerClient to access the secret, you need to add an `accessControl` section in the [Retrieve Secret Values](https://docs.aws.amazon.com/greengrass/v2/developerguide/ipc-secret-manager.html#ipc-secret-manager-authorization). Refer also to the [Requirements](https://docs.aws.amazon.com/greengrass/v2/developerguide/secret-manager-component.html#secret-manager-component-requirements) for the necessary authorization policies to be added to the Greengrass Token Exchange Role.
 
+For example, the recipe of a component using SecretsManagerClient would look like:
 
+```yaml
+RecipeFormatVersion: 2020-01-25
+...
+ComponentDependencies: 
+  aws.greengrass.labs.SecretsManagerClient:
+    VersionRequirement: ">0.0.0"
+ComponentConfiguration:
+  DefaultConfiguration:
+    username: "test"
+    accessControl:
+      aws.greengrass.SecretManager:
+        auth-1: 
+          operations:
+          - aws.greengrass#GetSecretValue
+          resources: 
+          - "*"
+Manifests:
+  - Lifecycle:
+      Startup:
+        Script: |-
+          PWD=$(java -jar {aws.greengrass.labs.SecretsManagerClient:artifacts:path}/secrets.jar aws.greengrass.labs.nodered/{configuration:/username})
+          ...
+```
+
+## Installation
+
+To install this component follow the instructions in [BUILD.md](./BUILD.md)
 
 ## Versions
 This component has the following versions:
