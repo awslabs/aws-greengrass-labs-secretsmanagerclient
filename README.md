@@ -10,7 +10,9 @@ java -jar
   <secretId>
 ```
 
-To allow the component using the SecretManagerClient to access the secret, you need to add an `accessControl` section in the [Retrieve Secret Values](https://docs.aws.amazon.com/greengrass/v2/developerguide/ipc-secret-manager.html#ipc-secret-manager-authorization). Refer also to the [Requirements](https://docs.aws.amazon.com/greengrass/v2/developerguide/secret-manager-component.html#secret-manager-component-requirements) for the necessary authorization policies to be added to the Greengrass Token Exchange Role.
+To allow the component using the SecretManagerClient to access the secret, you need to add an `accessControl` section in the recipe of the component that is usng the SecretsManagerClient (see [Retrieve Secret Values](https://docs.aws.amazon.com/greengrass/v2/developerguide/ipc-secret-manager.html#ipc-secret-manager-authorization) documentation for the authorization policy format). 
+
+Add the necessary authorization policies to the Greengrass Token Exchange Role as explained in the [SecretsManager component requirements](https://docs.aws.amazon.com/greengrass/v2/developerguide/secret-manager-component.html#secret-manager-component-requirements).
 
 For example, the recipe of a component using SecretsManagerClient would look like:
 
@@ -37,6 +39,9 @@ Manifests:
           PWD=$(java -jar {aws.greengrass.labs.SecretsManagerClient:artifacts:path}/secrets.jar aws.greengrass.labs.nodered/{configuration:/username})
           ...
 ```
+
+Finally, you'll need to explicitly add the `aws.greengrass.SecretManager` component to the deployment in order to [configure the `cloudSecrets` resources](https://docs.aws.amazon.com/greengrass/v2/developerguide/secret-manager-component.html#secret-manager-component-configuration).
+
 
 ## Installation
 
