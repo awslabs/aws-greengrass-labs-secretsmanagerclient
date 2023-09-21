@@ -67,7 +67,7 @@ This component does not have any additional requirements to Greengrass Nucleus.
 
 When you deploy a component, AWS IoT Greengrass also deploys compatible versions of its dependencies. This means that you must meet the requirements for the component and all of its dependencies to successfully deploy the component. This section lists the dependencies for the released versions of this component and the semantic version constraints that define the component versions for each dependency. You can also view the dependencies for each version of the component in the [AWS IoT Greengrass console](https://console.aws.amazon.com/greengrass). On the component details page, look for the Dependencies list.
 
-### 1.0.0
+### 1.1.0
 
 | Dependency | Compatible versions | Dependency type |
 |---|---|---|
@@ -91,4 +91,4 @@ The following table describes the changes in each version of the component.
 | Version | Changes |
 |---|---|
 | 1.0.0 | Initial version |
-
+| 1.1.0 | Update Device SDK to 1.16 |

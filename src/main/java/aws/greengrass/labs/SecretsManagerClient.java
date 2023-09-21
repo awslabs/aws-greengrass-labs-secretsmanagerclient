@@ -1,14 +1,12 @@
 package aws.greengrass.labs;
 
-import aws.greengrass.labs.util.IPCUtils;
-
-import software.amazon.awssdk.aws.greengrass.GetSecretValueResponseHandler;
-import software.amazon.awssdk.aws.greengrass.GreengrassCoreIPCClient;
-import software.amazon.awssdk.aws.greengrass.model.GetSecretValueRequest;
+import software.amazon.awssdk.aws.greengrass.GreengrassCoreIPCClientV2;
 import software.amazon.awssdk.aws.greengrass.model.GetSecretValueResponse;
+import software.amazon.awssdk.aws.greengrass.model.GetSecretValueRequest;
 import software.amazon.awssdk.aws.greengrass.model.UnauthorizedError;
 import software.amazon.awssdk.eventstreamrpc.EventStreamRPCConnection;
 
+import java.io.IOException;
 import java.sql.Time;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -24,11 +22,9 @@ public class SecretsManagerClient {
             System.exit(1);
         }
         String secretId = args[0];
-        try (EventStreamRPCConnection eventStreamRPCConnection =
-                     IPCUtils.getEventStreamRpcConnection()) {
-            GreengrassCoreIPCClient ipcClient =
-                    new GreengrassCoreIPCClient(eventStreamRPCConnection);
-            System.out.println(Secret.get(ipcClient, secretId));
+        try (GreengrassCoreIPCClientV2 ipcClient = GreengrassCoreIPCClientV2.builder().build()) {
+
+            System.out.println(SecretsManagerClient.getSecret(ipcClient, secretId));
         } catch (InterruptedException e) {
             System.err.println("IPC interrupted.");
             System.exit(1);
@@ -37,8 +33,22 @@ public class SecretsManagerClient {
             System.exit(1);
         } catch (ExecutionException e) {
             System.err.println("Exception occurred when using IPC.");
+            if (e.getCause() instanceof UnauthorizedError) {
+                System.err.println("Unauthorized error while retrieving secret: " + secretId);
+            }
             e.printStackTrace();
             System.exit(1);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
+    }
+
+    public static String getSecret(GreengrassCoreIPCClientV2 ipcClient, String secretId) throws InterruptedException {
+        GetSecretValueRequest request = new GetSecretValueRequest();
+        request.setSecretId(secretId);
+        GetSecretValueResponse response = ipcClient.getSecretValue(request);
+        return response.getSecretValue().getSecretString();
     }
 }
