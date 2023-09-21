@@ -7,3 +7,4 @@ artifacts
 .gradle
 .settings
 .project
+.idea

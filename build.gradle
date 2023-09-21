@@ -7,15 +7,12 @@ version '1.0.0'
 
 repositories {
     mavenCentral()
-    maven {
-        url System.getenv('HOME') + "/.m2/repository"
-    }
 }
 
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
-    implementation 'software.amazon.awssdk.iotdevicesdk:aws-iot-device-sdk:1.5.3'
+    implementation 'software.amazon.awssdk.iotdevicesdk:aws-iot-device-sdk:1.16.0'
     testImplementation "org.mockito:mockito-core:3.+"
     testImplementation 'org.mockito:mockito-inline:3.+'
     testImplementation 'com.github.stefanbirkner:system-rules:1.19.0'
